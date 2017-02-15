@@ -4,3 +4,6 @@ services:
         build: .
         ports:
             - '8000:8000'
+        volumes:
+            - /mnt/docker/erpnext/var_lib_mysql:/var/lib/mysql
+            - /mnt/docker/erpnext/sites/site1.local:/home/frappe/frappe-bench/sites/site1.local
