@@ -1,9 +1,12 @@
 #!/bin/bash
-apt-get update && apt-get install -y wget ca-certificates sudo cron supervisor
-/usr/bin/supervisord
+cd /home/frappe
 
-wget https://raw.githubusercontent.com/frappe/bench/master/install_scripts/setup_frappe.sh
-bash setup_frappe.sh --setup-production
-rm /home/frappe/*.deb
+apt-get install -y wget sudo python cron
+
+wget https://raw.githubusercontent.com/srdgame/bench/master/playbooks/install.py -O /home/frappe/install.py
+python /home/frappe/install.py --develop --user frappe
+
+# Remove dev pkgs
+apt-get -y remove build-essential python-dev python-software-properties libmariadbclient-dev libxslt1-dev libcrypto++-dev libssl-dev
 
 exit 0
